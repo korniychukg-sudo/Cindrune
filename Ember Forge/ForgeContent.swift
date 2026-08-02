@@ -33,8 +33,7 @@ enum Content {
 
     // MARK: - Projects
 
-    static let projects: [ForgeProject] = [
-
+    private static let firstHeatsBook: [ForgeProject] = [
         // ── First Heats ───────────────────────────────────────────────
         ForgeProject(
             id: "nail", name: "Square Nail", chapter: .firstHeats, order: 0,
@@ -102,8 +101,10 @@ enum Content {
             parStrikes: 52, heatsAllowed: 5,
             summary: "A stem drawn thin, then the end spread wide and flat into a leaf.",
             lore: "Spreading a leaf teaches the difference between the flat face and the peen. The face makes it thin; only the peen makes it wide in the direction you want.",
-            spot: .shelf, needsHardening: false, idealTemper: nil),
+            spot: .shelf, needsHardening: false, idealTemper: nil)
+    ]
 
+    private static let toolsBook: [ForgeProject] = [
         // ── Tools of the Trade ────────────────────────────────────────
         ForgeProject(
             id: "centerpunch", name: "Center Punch", chapter: .tools, order: 0,
@@ -171,8 +172,10 @@ enum Content {
             parStrikes: 32, heatsAllowed: 6,
             summary: "A flat face at one end, a cross peen at the other, and an eye punched through the middle.",
             lore: "Making your own hammer is the old test of a finished apprentice. The eye must be punched and drifted, never drilled, so the grain flows round it instead of being cut through.",
-            spot: .toolRack, needsHardening: true, idealTemper: .purple),
+            spot: .toolRack, needsHardening: true, idealTemper: .purple)
+    ]
 
+    private static let hearthBook: [ForgeProject] = [
         // ── Hearth and Home ───────────────────────────────────────────
         ForgeProject(
             id: "poker", name: "Fire Poker", chapter: .hearth, order: 0,
@@ -249,8 +252,10 @@ enum Content {
             parStrikes: 50, heatsAllowed: 5,
             summary: "One of three matching legs: a riveted pad, a twisted stem and a footed curl.",
             lore: "Trivets are made in threes and they must match, which is why smiths make a template out of soft wire before the first one goes in the fire.",
-            spot: .floor, needsHardening: false, idealTemper: nil),
+            spot: .floor, needsHardening: false, idealTemper: nil)
+    ]
 
+    private static let ornamentBook: [ForgeProject] = [
         // ── Ornament ──────────────────────────────────────────────────
         ForgeProject(
             id: "candlespike", name: "Candle Spike", chapter: .ornament, order: 0,
@@ -328,8 +333,10 @@ enum Content {
             parStrikes: 66, heatsAllowed: 7,
             summary: "The full ornamental vocabulary in one bar: plate, twist, arm and hanging curl.",
             lore: "Hang a lantern from this and the whole shop changes at dusk. It is also the first piece where you will be judged on symmetry rather than strength.",
-            spot: .doorFrame, needsHardening: false, idealTemper: nil),
+            spot: .doorFrame, needsHardening: false, idealTemper: nil)
+    ]
 
+    private static let masterworksBook: [ForgeProject] = [
         // ── Masterworks ───────────────────────────────────────────────
         ForgeProject(
             id: "axehead", name: "Hand Axe Head", chapter: .masterworks, order: 0,
@@ -396,6 +403,11 @@ enum Content {
             spot: .shelf, needsHardening: true, idealTemper: .bronze)
     ]
 
+    // Five smaller literals instead of one: a single 24-element array of
+    // nested struct literals takes the Release optimiser many minutes.
+    static let projects: [ForgeProject] =
+        firstHeatsBook + toolsBook + hearthBook + ornamentBook + masterworksBook
+
     static func project(_ id: String) -> ForgeProject? { projects.first { $0.id == id } }
 
     static func projects(in chapter: Chapter) -> [ForgeProject] {
@@ -434,21 +446,27 @@ enum Content {
 
     // MARK: - Badges
 
-    static let badges: [ForgeBadge] = [
+    private static let badgesPart1: [ForgeBadge] = [
         ForgeBadge(id: "first_heat", name: "First Heat", detail: "Bring a bar up to forging colour.", art: "badge_first_heat"),
         ForgeBadge(id: "first_piece", name: "Off the Anvil", detail: "Finish your first commission.", art: "badge_first_piece"),
         ForgeBadge(id: "three_star", name: "Clean Work", detail: "Earn three stars on any piece.", art: "badge_three_star"),
         ForgeBadge(id: "pristine", name: "Not a Mark", detail: "Finish a piece at pristine quality.", art: "badge_pristine"),
         ForgeBadge(id: "chapter_first", name: "Past the Nails", detail: "Complete every First Heats commission.", art: "badge_chapter_first"),
         ForgeBadge(id: "chapter_tools", name: "Own Tools", detail: "Complete every Tools of the Trade commission.", art: "badge_chapter_tools"),
-        ForgeBadge(id: "chapter_hearth", name: "Fireside Set", detail: "Complete every Hearth and Home commission.", art: "badge_chapter_hearth"),
+        ForgeBadge(id: "chapter_hearth", name: "Fireside Set", detail: "Complete every Hearth and Home commission.", art: "badge_chapter_hearth")
+    ]
+
+    private static let badgesPart2: [ForgeBadge] = [
         ForgeBadge(id: "chapter_ornament", name: "Worth Looking At", detail: "Complete every Ornament commission.", art: "badge_chapter_ornament"),
         ForgeBadge(id: "chapter_master", name: "Masterwork", detail: "Complete every Masterworks commission.", art: "badge_chapter_master"),
         ForgeBadge(id: "hardened", name: "Hard and Sharp", detail: "Harden and temper a piece to the colour it asked for.", art: "badge_hardened"),
         ForgeBadge(id: "no_crack", name: "Never Cold", detail: "Finish a commission without a single cold blow.", art: "badge_no_crack"),
         ForgeBadge(id: "under_par", name: "Economy of Blows", detail: "Finish a commission under its par strikes.", art: "badge_under_par"),
         ForgeBadge(id: "one_heat", name: "One Heat Wonder", detail: "Finish a commission in a single heat.", art: "badge_one_heat"),
-        ForgeBadge(id: "twenty", name: "Twenty Pieces", detail: "Finish twenty pieces of any quality.", art: "badge_twenty"),
+        ForgeBadge(id: "twenty", name: "Twenty Pieces", detail: "Finish twenty pieces of any quality.", art: "badge_twenty")
+    ]
+
+    private static let badgesPart3: [ForgeBadge] = [
         ForgeBadge(id: "streak_3", name: "Three Days at the Fire", detail: "Forge on three days in a row.", art: "badge_streak_3"),
         ForgeBadge(id: "streak_7", name: "A Week of Smoke", detail: "Forge on seven days in a row.", art: "badge_streak_7"),
         ForgeBadge(id: "commissions_10", name: "Good for the Trade", detail: "Deliver ten daily commissions.", art: "badge_commissions"),
@@ -457,9 +475,15 @@ enum Content {
         ForgeBadge(id: "quiz_perfect", name: "Knows the Trade", detail: "Answer all ten quiz questions correctly.", art: "badge_quiz")
     ]
 
+    // Split into chunks: one huge array literal makes the Release
+    // optimiser crawl through SIL for many minutes.
+    static let badges: [ForgeBadge] =
+        badgesPart1 + badgesPart2 + badgesPart3
+
+
     // MARK: - Almanac
 
-    static let guides: [ForgeGuide] = [
+    private static let guidesPart1: [ForgeGuide] = [
         ForgeGuide(id: "heat", title: "Reading the Heat",
                    standfirst: "The bar tells you its temperature. You only have to learn the language.",
                    art: "guide_heat",
@@ -495,7 +519,10 @@ enum Content {
                     "The tapering horn at one end is for bending curves and drawing round sections. Near the horn there is often a softer step called the table, meant for cutting, exactly so nobody cuts on the face.",
                     "Two holes go through the far end. The square one is the hardy hole, which takes shanked bottom tools — cut-offs, bending forks, swages. The small round one is the pritchel hole, and it is there so a punch can be driven right through the work without hitting solid steel underneath.",
                     "A good anvil rings. That ring is the sound of an unbroken, well-hardened face, and it is also why anvils are traditionally set on a wooden stump rather than concrete: the wood takes the noise out without taking the rebound with it."
-                   ]),
+                   ])
+    ]
+
+    private static let guidesPart2: [ForgeGuide] = [
         ForgeGuide(id: "hammers", title: "Hammers, and Knowing When to Change",
                    standfirst: "A heavy hammer is not a better hammer.",
                    art: "guide_hammers",
@@ -531,7 +558,10 @@ enum Content {
                     "How fast is fast enough depends entirely on the alloy. Simple high-carbon steel needs water or brine. Oil-hardening tool steels want oil, and quenching them in water will crack them outright. A few air-hardening steels need nothing but still air.",
                     "The faster the quench, the greater the risk. As the outside contracts around a still-hot centre, the stresses can exceed what the steel will take, and it splits. Thin sections, sharp internal corners and abrupt changes of thickness are where cracks start.",
                     "Move the work in the quench, and move it edge-first. Steam forms an insulating jacket around a stationary piece and gives you a soft spot exactly where you did not want one."
-                   ]),
+                   ])
+    ]
+
+    private static let guidesPart3: [ForgeGuide] = [
         ForgeGuide(id: "temper", title: "Running the Colours",
                    standfirst: "Fresh from the quench, the steel is too hard to use.",
                    art: "guide_temper",
@@ -570,9 +600,15 @@ enum Content {
                    ])
     ]
 
+    // Split into chunks: one huge array literal makes the Release
+    // optimiser crawl through SIL for many minutes.
+    static let guides: [ForgeGuide] =
+        guidesPart1 + guidesPart2 + guidesPart3
+
+
     // MARK: - Glossary
 
-    static let glossary: [GlossaryEntry] = [
+    private static let glossaryPart1: [GlossaryEntry] = [
         GlossaryEntry(term: "Anneal", meaning: "Heating steel and cooling it as slowly as possible to leave it soft and easy to work or machine."),
         GlossaryEntry(term: "Billet", meaning: "A short, thick block of stock ready to be forged, often several pieces stacked for pattern welding."),
         GlossaryEntry(term: "Black Heat", meaning: "Hot enough to burn you badly, not hot enough to glow. The most dangerous temperature in the shop."),
@@ -582,7 +618,10 @@ enum Content {
         GlossaryEntry(term: "Drift", meaning: "A tapered tool driven through a punched hole to bring it to its final size and shape."),
         GlossaryEntry(term: "Fire Scale", meaning: "The flaking black oxide that grows on hot steel and must be cleared before any weld."),
         GlossaryEntry(term: "Flux", meaning: "Borax or similar, melted onto a joint to float out scale and keep air away during a forge weld."),
-        GlossaryEntry(term: "Forge Weld", meaning: "Joining two pieces at a near-molten heat by hammer pressure alone, with no filler metal."),
+        GlossaryEntry(term: "Forge Weld", meaning: "Joining two pieces at a near-molten heat by hammer pressure alone, with no filler metal.")
+    ]
+
+    private static let glossaryPart2: [GlossaryEntry] = [
         GlossaryEntry(term: "Fuller", meaning: "A blunt rounded tool that sinks a groove and isolates a shoulder without moving neighbouring metal."),
         GlossaryEntry(term: "Hardy Hole", meaning: "The square hole in an anvil that holds shanked bottom tools."),
         GlossaryEntry(term: "Horn", meaning: "The tapered cone at one end of an anvil, used for bending curves and rings."),
@@ -592,7 +631,10 @@ enum Content {
         GlossaryEntry(term: "Poll", meaning: "The heavy back end of an axe head, opposite the cutting edge."),
         GlossaryEntry(term: "Pritchel Hole", meaning: "The small round hole in an anvil, there so a punch can pass through work without hitting steel."),
         GlossaryEntry(term: "Quench", meaning: "Cooling hot steel rapidly in air, oil, water or brine in order to harden it."),
-        GlossaryEntry(term: "Scarf", meaning: "The tapered, slightly domed end prepared on each piece before a forge weld."),
+        GlossaryEntry(term: "Scarf", meaning: "The tapered, slightly domed end prepared on each piece before a forge weld.")
+    ]
+
+    private static let glossaryPart3: [GlossaryEntry] = [
         GlossaryEntry(term: "Shoulder", meaning: "A deliberate step where a bar changes section, usually made with a fuller."),
         GlossaryEntry(term: "Slack Tub", meaning: "The tub of water beside the anvil, used for cooling tools and hands, rarely for hardening."),
         GlossaryEntry(term: "Spring Steel", meaning: "A tough medium-carbon alloy that returns to shape under load and needs a gentle quench."),
@@ -603,9 +645,15 @@ enum Content {
         GlossaryEntry(term: "Wrought Iron", meaning: "Nearly carbon-free iron threaded with slag fibres: tough, weldable and highly rust-resistant.")
     ]
 
+    // Split into chunks: one huge array literal makes the Release
+    // optimiser crawl through SIL for many minutes.
+    static let glossary: [GlossaryEntry] =
+        glossaryPart1 + glossaryPart2 + glossaryPart3
+
+
     // MARK: - Quiz
 
-    static let quiz: [QuizQuestion] = [
+    private static let quizPart1: [QuizQuestion] = [
         QuizQuestion(prompt: "Roughly what temperature is a bright cherry red?",
                      options: ["350 °C", "500 °C", "800 °C", "1400 °C"], answer: 2,
                      because: "Cherry red sits near 800 °C, comfortably inside the forging range for most steels."),
@@ -629,7 +677,10 @@ enum Content {
                      because: "Straw is the first useful colour, near 205 °C, and suits punches and scribes."),
         QuizQuestion(prompt: "Which temper colour suits an axe?",
                      options: ["Pale straw", "Purple", "Grey", "None — leave it hard"], answer: 1,
-                     because: "An axe takes shocks, so it wants toughness over maximum hardness: purple, near 275 °C."),
+                     because: "An axe takes shocks, so it wants toughness over maximum hardness: purple, near 275 °C.")
+    ]
+
+    private static let quizPart2: [QuizQuestion] = [
         QuizQuestion(prompt: "What does a cross peen do that a flat face does not?",
                      options: ["Cuts the bar", "Drives metal mostly in one direction", "Cools the bar", "Hardens the surface"], answer: 1,
                      because: "The wedge shape concentrates the blow along one axis, which is how bars are drawn out fast."),
@@ -653,7 +704,10 @@ enum Content {
                      because: "The sharp edge of the anvil is what gives a corner rather than a soft curve."),
         QuizQuestion(prompt: "Which hammer weight suits most general forging?",
                      options: ["300 g", "900 g", "3 kg", "6 kg"], answer: 1,
-                     because: "Somewhere near a kilogram gives useful force without wrecking your accuracy or your elbow."),
+                     because: "Somewhere near a kilogram gives useful force without wrecking your accuracy or your elbow.")
+    ]
+
+    private static let quizPart3: [QuizQuestion] = [
         QuizQuestion(prompt: "A just-quenched high carbon piece is:",
                      options: ["Soft and tough", "Hard and brittle", "Unchanged", "Annealed"], answer: 1,
                      because: "Maximum hardness comes with maximum brittleness, which is exactly why tempering exists."),
@@ -677,7 +731,10 @@ enum Content {
                      because: "A stationary piece grows an insulating steam blanket and comes out with soft spots."),
         QuizQuestion(prompt: "Annealing steel means:",
                      options: ["Cooling it as slowly as possible", "Quenching in brine", "Heating past burning", "Twisting it hot"], answer: 0,
-                     because: "Slow cooling leaves the softest, most workable structure."),
+                     because: "Slow cooling leaves the softest, most workable structure.")
+    ]
+
+    private static let quizPart4: [QuizQuestion] = [
         QuizQuestion(prompt: "The tapered cone on an anvil is the:",
                      options: ["Table", "Horn", "Poll", "Tang"], answer: 1,
                      because: "The horn is for bending curves, rings and drawing round sections."),
@@ -697,4 +754,10 @@ enum Content {
                      options: ["Hardening every piece", "Cooling tools and hands", "Storing flux", "Mixing quench oil"], answer: 1,
                      because: "Serious hardening is planned; the slack tub is mostly for keeping tools and fingers usable.")
     ]
+
+    // Split into chunks: one huge array literal makes the Release
+    // optimiser crawl through SIL for many minutes.
+    static let quiz: [QuizQuestion] =
+        quizPart1 + quizPart2 + quizPart3 + quizPart4
+
 }
