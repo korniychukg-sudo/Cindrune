@@ -57,6 +57,7 @@ struct WorkshopView: View {
 
     @State private var pan: CGFloat = 0
     @State private var panStart: CGFloat = 0
+    @State private var framed = false
     @State private var touched: WorkshopSpot? = nil
     @State private var showTools = false
     @State private var showGallery = false
@@ -83,6 +84,13 @@ struct WorkshopView: View {
                                sceneWidth: sceneW, highlighted: touched?.id)
                     .frame(width: geo.size.width, height: geo.size.height)
                     .contentShape(Rectangle())
+                    .onAppear {
+                        // The shop opens where the work happens, not on the far wall.
+                        guard !framed else { return }
+                        framed = true
+                        pan = -maxPan * 0.66
+                        panStart = pan
+                    }
                     .gesture(
                         DragGesture(minimumDistance: 0)
                             .onChanged { v in
@@ -466,8 +474,8 @@ struct WorkshopCanvas: View {
             bends[ForgeJudge.index(for: f.at)] += f.amount
         }
         let g = BarGeometry.build(segments: segs, bends: bends, in: rect)
-        ctx.fill(g.outline, with: .color(Color(red: 0.46, green: 0.44, blue: 0.42)))
-        ctx.stroke(g.outline, with: .color(Color.black.opacity(0.55)), lineWidth: 0.7)
+        ctx.fill(g.outline, with: .color(Color(red: 0.66, green: 0.63, blue: 0.59)))
+        ctx.stroke(g.outline, with: .color(Color.black.opacity(0.7)), lineWidth: 0.8)
     }
 
     private func drawDesk(_ ctx: inout GraphicsContext, x: CGFloat, W: CGFloat, H: CGFloat) {
