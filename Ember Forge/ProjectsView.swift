@@ -122,13 +122,12 @@ struct ProjectsView: View {
                 chapterCard
 
                 if store.isChapterOpen(chapter) {
-                    VStack(spacing: 10) {
-                        ForEach(Content.projects(in: chapter)) { p in
-                            ProjectRow(project: p,
-                                       open: store.isProjectOpen(p),
-                                       best: store.best(p.id)) {
-                                if store.isProjectOpen(p) { detail = p }
-                            }
+                    ColumnGrid(items: Content.projects(in: chapter),
+                               columns: Forge.listColumns, spacing: 10) { p in
+                        ProjectRow(project: p,
+                                   open: store.isProjectOpen(p),
+                                   best: store.best(p.id)) {
+                            if store.isProjectOpen(p) { detail = p }
                         }
                     }
                 } else {
@@ -326,6 +325,7 @@ struct ProjectDetailSheet: View {
 
     var body: some View {
         ForgeSheet(title: project.name, onClose: onClose) {
+            ForgePlate(name: "piece_\(project.id)", height: Forge.wide ? 260 : 190)
             BlueprintView(project: project, height: 150)
 
             Text(project.summary)

@@ -60,9 +60,9 @@ struct RootView: View {
             Group {
                 switch tab {
                 case 0:
-                    HomeView(store: store,
-                             onStart: { p, m in start(p, m) },
-                             onOpenBook: { tab = 1 })
+                    WorkshopView(store: store,
+                                 onStart: { p, m in start(p, m) },
+                                 onTab: { tab = $0 })
                 case 1:
                     ProjectsView(store: store, onStart: { p, m in start(p, m) })
                 case 2:
@@ -83,7 +83,7 @@ struct RootView: View {
 
     private var tabBar: some View {
         HStack(spacing: 0) {
-            tabButton(index: 0, label: "Forge",
+            tabButton(index: 0, label: "Shop",
                       icon: AnyView(AnvilGlyph(size: 23, color: tint(0))))
             tabButton(index: 1, label: "Book",
                       icon: AnyView(ScrollGlyph(size: 23, color: tint(1))))

@@ -53,7 +53,10 @@ enum Forge {
     static var wide: Bool { UIScreen.main.bounds.width >= 700 }
 
     /// Content column width so text never stretches edge to edge on iPad.
-    static func column(_ available: CGFloat) -> CGFloat { min(available, 620) }
+    static func column(_ available: CGFloat) -> CGFloat { min(available, wide ? 900 : 620) }
+
+    /// How many columns a list of cards should run in on this canvas.
+    static var listColumns: Int { wide ? 2 : 1 }
 
     static let corner: CGFloat = 16
     static let cornerSmall: CGFloat = 10

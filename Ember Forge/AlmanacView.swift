@@ -58,7 +58,7 @@ struct AlmanacView: View {
                     .foregroundColor(Forge.chalkFaint)
                 Spacer()
             }
-            ForEach(Content.guides) { g in
+            ColumnGrid(items: Content.guides, columns: Forge.listColumns, spacing: 10) { g in
                 Button(action: {
                     ForgeSound.shared.play(.tap, volume: 0.4)
                     guide = g

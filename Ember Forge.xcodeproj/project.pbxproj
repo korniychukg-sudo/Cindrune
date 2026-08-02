@@ -25,6 +25,7 @@
 		EF0000000000000000000116 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0000000000000000000016 /* JournalView.swift */; };
 		EF0000000000000000000117 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0000000000000000000017 /* OnboardingView.swift */; };
 		EF0000000000000000000118 /* SmithyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0000000000000000000018 /* SmithyScene.swift */; };
+		EF0000000000000000000119 /* WorkshopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0000000000000000000019 /* WorkshopView.swift */; };
 		EF0000000000000000000120 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF0000000000000000000020 /* Assets.xcassets */; };
 		EF0000000000000000000121 /* Art in Resources */ = {isa = PBXBuildFile; fileRef = EF0000000000000000000021 /* Art */; };
 		EF0000000000000000000122 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = EF0000000000000000000023 /* Audio */; };
@@ -49,6 +50,7 @@
 		EF0000000000000000000016 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		EF0000000000000000000017 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		EF0000000000000000000018 /* SmithyScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmithyScene.swift; sourceTree = "<group>"; };
+		EF0000000000000000000019 /* WorkshopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkshopView.swift; sourceTree = "<group>"; };
 		EF0000000000000000000020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF0000000000000000000021 /* Art */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Art; sourceTree = "<group>"; };
 		EF0000000000000000000023 /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Audio; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				EF0000000000000000000010 /* Components.swift */,
 				EF0000000000000000000011 /* RootView.swift */,
 				EF0000000000000000000012 /* HomeView.swift */,
+				EF0000000000000000000019 /* WorkshopView.swift */,
 				EF0000000000000000000018 /* SmithyScene.swift */,
 				EF0000000000000000000013 /* ProjectsView.swift */,
 				EF0000000000000000000014 /* AnvilView.swift */,
@@ -195,6 +198,7 @@
 				EF0000000000000000000110 /* Components.swift in Sources */,
 				EF0000000000000000000111 /* RootView.swift in Sources */,
 				EF0000000000000000000112 /* HomeView.swift in Sources */,
+				EF0000000000000000000119 /* WorkshopView.swift in Sources */,
 				EF0000000000000000000118 /* SmithyScene.swift in Sources */,
 				EF0000000000000000000113 /* ProjectsView.swift in Sources */,
 				EF0000000000000000000114 /* AnvilView.swift in Sources */,
@@ -321,7 +325,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -350,7 +354,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
