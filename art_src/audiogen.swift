@@ -1,6 +1,6 @@
 import Foundation
 
-// Synthesises every sound Ember Forge ships. Mono 44.1 kHz, 16-bit WAV.
+// Synthesises every sound Cindrune ships. Mono 44.1 kHz, 16-bit WAV.
 // Usage: audiogen <output-directory>
 
 let outDir = CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "."

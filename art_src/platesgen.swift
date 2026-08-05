@@ -1,7 +1,7 @@
 import Foundation
 import CoreGraphics
 
-// Generates every bundled illustration for Ember Forge as a copperplate
+// Generates every bundled illustration for Cindrune as a copperplate
 // engraving. Compiled together with the app's own content tables, so the
 // twenty-four piece plates are drawn from exactly the data the player forges
 // against.

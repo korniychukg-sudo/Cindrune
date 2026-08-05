@@ -2,7 +2,7 @@ import Foundation
 import AVFoundation
 import UIKit
 
-// Every sound in Ember Forge is synthesised at build time into the bundled
+// Every sound in Cindrune is synthesised at build time into the bundled
 // Audio folder and played back through a small pool of nodes.
 
 enum ForgeSample: String, CaseIterable {
@@ -32,7 +32,7 @@ final class ForgeSound {
     private var buffers: [String: AVAudioPCMBuffer] = [:]
     private var nextPlayer = 0
     private var ambientName = ""
-    private let loadQueue = DispatchQueue(label: "ember.forge.audio")
+    private let loadQueue = DispatchQueue(label: "cindrune.audio")
 
     private let lightTap = UIImpactFeedbackGenerator(style: .light)
     private let mediumTap = UIImpactFeedbackGenerator(style: .medium)

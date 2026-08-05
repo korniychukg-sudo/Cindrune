@@ -1,6 +1,6 @@
 import SwiftUI
 
-// Palette for Ember Forge — a soot-dark smithy lit by coal and hot iron.
+// Palette for Cindrune — a soot-dark smithy lit by coal and hot iron.
 // Every colour is fixed, so the app never follows the device light/dark setting.
 enum Forge {
 

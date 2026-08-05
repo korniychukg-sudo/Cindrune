@@ -1,6 +1,6 @@
 import SwiftUI
 
-// Every glyph in Ember Forge is drawn here. Nothing comes from the system icon
+// Every glyph in Cindrune is drawn here. Nothing comes from the system icon
 // set, and nothing is an emoji.
 
 // MARK: - Tab glyphs

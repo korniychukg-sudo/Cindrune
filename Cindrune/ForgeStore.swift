@@ -30,7 +30,7 @@ final class ForgeStore: ObservableObject {
     /// Set when a badge is earned so the UI can show a single celebration card.
     @Published var freshBadge: ForgeBadge? = nil
 
-    private let key = "ember.forge.save.v1"
+    private let key = "cindrune.save.v1"
 
     init() {
         load()

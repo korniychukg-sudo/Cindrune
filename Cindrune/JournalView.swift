@@ -316,7 +316,7 @@ struct SettingsSheet: View {
 
             Button(action: { ForgeSound.shared.play(.tap, volume: 0.4); onAbout() }) {
                 HStack {
-                    Text("About Ember Forge")
+                    Text("About Cindrune")
                         .font(Forge.label(14))
                         .foregroundColor(Forge.chalk)
                     Spacer()
@@ -330,6 +330,8 @@ struct SettingsSheet: View {
                     .stroke(Forge.slate, lineWidth: 1))
             }
             .buttonStyle(PlainButtonStyle())
+
+            SupportRow()
 
             VStack(alignment: .leading, spacing: 9) {
                 SectionHeading(text: "Start over")
@@ -401,12 +403,85 @@ struct ToggleRow: View {
     }
 }
 
+/// The one address Cindrune knows. Tapping it hands the URL to the system
+/// browser; nothing is ever loaded inside the app.
+enum CindruneSupport {
+    static let url = URL(string: "https://www.termsfeed.com/live/1f393bf4-2a57-4d3d-a9cf-a7fa73f1c8dc")!
+
+    static func open() {
+        UIApplication.shared.open(url)
+    }
+}
+
+struct SupportRow: View {
+    var body: some View {
+        Button(action: {
+            ForgeSound.shared.play(.tap, volume: 0.4)
+            CindruneSupport.open()
+        }) {
+            HStack(spacing: 12) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Support")
+                        .font(Forge.label(14))
+                        .foregroundColor(Forge.chalk)
+                    Text("Questions, or the privacy policy. Opens in your browser.")
+                        .font(Forge.body(11))
+                        .foregroundColor(Forge.chalkFaint)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.leading)
+                }
+                Spacer(minLength: 8)
+                ExternalMark(size: 15)
+            }
+            .padding(14)
+            .frame(maxWidth: .infinity)
+            .background(RoundedRectangle(cornerRadius: Forge.corner, style: .continuous)
+                .fill(Forge.stone))
+            .overlay(RoundedRectangle(cornerRadius: Forge.corner, style: .continuous)
+                .stroke(Forge.slate, lineWidth: 1))
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+/// An arrow leaving a box — the standard "this goes outside the app" mark,
+/// drawn rather than borrowed from the system set.
+struct ExternalMark: View {
+    var size: CGFloat = 15
+    var color: Color = Forge.brass
+
+    var body: some View {
+        Canvas { ctx, s in
+            let w = s.width, h = s.height
+            var box = Path()
+            box.move(to: CGPoint(x: w * 0.56, y: h * 0.12))
+            box.addLine(to: CGPoint(x: w * 0.12, y: h * 0.12))
+            box.addLine(to: CGPoint(x: w * 0.12, y: h * 0.88))
+            box.addLine(to: CGPoint(x: w * 0.88, y: h * 0.88))
+            box.addLine(to: CGPoint(x: w * 0.88, y: h * 0.44))
+            ctx.stroke(box, with: .color(color),
+                       style: StrokeStyle(lineWidth: max(1.2, w * 0.10),
+                                          lineCap: .round, lineJoin: .round))
+            var arrow = Path()
+            arrow.move(to: CGPoint(x: w * 0.46, y: h * 0.54))
+            arrow.addLine(to: CGPoint(x: w * 0.92, y: h * 0.08))
+            arrow.move(to: CGPoint(x: w * 0.62, y: h * 0.08))
+            arrow.addLine(to: CGPoint(x: w * 0.92, y: h * 0.08))
+            arrow.addLine(to: CGPoint(x: w * 0.92, y: h * 0.38))
+            ctx.stroke(arrow, with: .color(color),
+                       style: StrokeStyle(lineWidth: max(1.2, w * 0.10),
+                                          lineCap: .round, lineJoin: .round))
+        }
+        .frame(width: size, height: size)
+    }
+}
+
 struct AboutSheet: View {
     let onClose: () -> Void
 
     var body: some View {
         ForgeSheet(title: "About", onClose: onClose) {
-            Text("Ember Forge")
+            Text("Cindrune")
                 .font(Forge.title(24))
                 .foregroundColor(Forge.chalk)
             Text("A small blacksmith's shop that runs entirely on this device. There is no account, no network connection, no advertising and no tracking. Everything you make is stored locally and nothing leaves the phone.")
@@ -422,10 +497,12 @@ struct AboutSheet: View {
                 .foregroundColor(Forge.chalkDim)
                 .fixedSize(horizontal: false, vertical: true)
             HammerRule()
-            Text("Every illustration, sound and animation in Ember Forge was generated for it. Version 1.0.")
+            Text("Every illustration, sound and animation in Cindrune was generated for it. Version 1.0.")
                 .font(Forge.body(12))
                 .foregroundColor(Forge.chalkFaint)
                 .fixedSize(horizontal: false, vertical: true)
+            HammerRule()
+            SupportRow()
         }
     }
 }

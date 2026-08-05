@@ -1,6 +1,6 @@
 import Foundation
 
-// Everything Ember Forge ships as written content: the commission book, the
+// Everything Cindrune ships as written content: the commission book, the
 // ranks, the awards and the almanac.
 enum Content {
 
