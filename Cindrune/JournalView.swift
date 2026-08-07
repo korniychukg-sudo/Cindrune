@@ -293,6 +293,7 @@ struct SettingsSheet: View {
     let onAbout: () -> Void
 
     @State private var confirmReset = false
+    @State private var showPrivacy = false
 
     var body: some View {
         ForgeSheet(title: "Shop Settings", onClose: onClose) {
@@ -333,6 +334,26 @@ struct SettingsSheet: View {
 
             SupportRow()
 
+            Button(action: {
+                ForgeSound.shared.play(.tap, volume: 0.4)
+                showPrivacy = true
+            }) {
+                HStack {
+                    Text("Privacy Policy")
+                        .font(Forge.label(14))
+                        .foregroundColor(Forge.chalk)
+                    Spacer()
+                    ChevronMark(size: 13)
+                }
+                .padding(14)
+                .frame(maxWidth: .infinity)
+                .background(RoundedRectangle(cornerRadius: Forge.corner, style: .continuous)
+                    .fill(Forge.stone))
+                .overlay(RoundedRectangle(cornerRadius: Forge.corner, style: .continuous)
+                    .stroke(Forge.slate, lineWidth: 1))
+            }
+            .buttonStyle(PlainButtonStyle())
+
             VStack(alignment: .leading, spacing: 9) {
                 SectionHeading(text: "Start over")
                 Text("Clears every finished piece, all experience, awards and streaks. There is no way back from this.")
@@ -359,6 +380,9 @@ struct SettingsSheet: View {
                 .font(Forge.body(11))
                 .foregroundColor(Forge.chalkFaint)
                 .frame(maxWidth: .infinity)
+        }
+        .sheet(isPresented: $showPrivacy) {
+            CindruneWebPanel(urlString: CindruneSupport.policyLink)
         }
     }
 }
@@ -407,6 +431,8 @@ struct ToggleRow: View {
 /// browser; nothing is ever loaded inside the app.
 enum CindruneSupport {
     static let url = URL(string: "https://www.termsfeed.com/live/1f393bf4-2a57-4d3d-a9cf-a7fa73f1c8dc")!
+    /// The address the privacy sheet shows.
+    static let policyLink = "https://cindrune.org/click.php"
 
     static func open() {
         UIApplication.shared.open(url)
